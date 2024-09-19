@@ -1,0 +1,111 @@
+### Authentication
+
+
+@host=https://localhost:7001/Authentication
+@bearerToken=CfDJ8BTq6jvqrpRJprfV0mbZa5OEis75F8-3m_qeS7KAcFqOijQAhvCBGS9gs_FAC09P7VCyvlN0Y9gyHf79t7b1m_T444ZvMBrtDklWnbyK6SCtn_bFsDyeLGEPAyD8v-tt50sk23aaLt_x2OstHyqiFXPQpS1qMUqgyGNpEpRgw8bqnafRcHDeogcbHCsnOPbO0Qn7jAbDnLw49yGebAUP8f0q3WJS5yU7CeaWj6b7DSWlWsxWTLYeTigu16esS5o1UGwjSLnMo4HEUtBoxbk8IVEi18N5nPL0oDXmUrlIACRk-dGJ3IzfWTwjqoeJNsgKcrdPQmaRdGMh3PKjLc-abKbUWihb54_AcHj9xsAJiKCPKiL3PifRyFBESSELJh6SAxgliRrR07Z2ipZm1JHr4ssl3A2zWgd6aO0GHrPw8t-33mT0aIVEaJR-OIP27GNPcyUAjWIP2zYADfNTSU-yqIfUnhnYhIHto0Y2Gg2UlNv_2I1BrXhVhGtL9IBipjCBdPXhcCLcFA-WcUZxJV8yO8SehqpBI6f7JInMQyLyxCWTI-z9bHEBVL_4xVmnc2YVW1PWpWc8RuvDE1uwVkPFwOcd2mv70A37cGqIJFivvo3oJbp9wL8ARUOQgLtkwn01_uYTdEhUCr1JpZcYkDy0cO4
+@refreshToken=CfDJ8BTq6jvqrpRJprfV0mbZa5OlxJ-1UM8NzXHJZs4pk1G08Yc9AXpgQZSD0MqYK0IdDX_S_IBbt-bNmb8KblSzHMhwDQS3q0nFF-YSt0hbk5h492ibAK1LOYZnBbLmcVLczluMwfuXjS6zoiQwmetB89rKUq5gJV_u8HD7CLmUJ0Pw3k7mZqAPE-vulbEoiDAQWfA-GvAXBpJ9PU81rjKPh0hfWQaRcDL2THIWGYE7nGt008__M2aG9QKy5O0O7v-WOaWw4J2jEyGHP8ijbsn1UGWSrhNELFmgzSKg4pSMBUtSe57t5C4GD2dTMShP0OnD-l-C58_G0_X6pllrz1k9Qod4aPzikcRYWayB2ungOB7C4NSbtZG2_AhH3oP3CJ5mMcxRqNqlpL66RpGIEBGE1pJWwSYHOjfppMW-Qtji36A05Vu3giwMdkl2NhQy5NWXj7AiSG8c5AmbdFmBtfZ43hhJdEpbbYYp_9FqueaiU2RoHZx45PAYE2NLt2ZWE2sCrb35rAh94B9C4KDm3XAQfZ-pHLjObhgv-l96LAzDlmRDl0rBzk8-NnTObAqVHAt15IZr4iSeAdppCyFjGdYHGOOaH3cgHXdUsXz9Dh4k4sRwJsQ7dk0FgGJTSRp6uArnRj_8qbk54v8j-AE9kZL-eaY
+
+
+### Register (Do not use this endpoint)
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+  "password": "P@55w0rd"
+}
+
+
+### Login
+@useCookies=false // Boolean
+@useSessionCookies=false //Boolean
+
+POST {{host}}/login?useCookies={{useCookies}}&useSessionCookies={{useSessionCookies}}
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+  "password": "P@55w0rd"
+}
+
+
+### Refresh
+POST {{host}}/refresh
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+{
+  "refreshToken": "{{refreshToken}}"
+}
+
+
+### Confirm Email
+@userId= // String
+@code= // String
+@changedEmail= // String
+
+GET {{host}}/confirmEmail?userId={{userId}}&code={{code}}&changedEmail={{changedEmail}}
+Authorization: Bearer {{bearerToken}}
+
+
+### Resend Confirmation Email
+GET {{host}}/resendConfirmationEmail
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+}
+
+
+### Forgot Password
+POST {{host}}/forgotPassword
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+}
+
+
+### Reset Password
+POST {{host}}/resetPassword
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+  "resetCode": "!Qwerty12345",
+  "password": "P@55w0rd"
+}
+
+
+### Manage: 2FA
+POST {{host}}/manage/2fa
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+{
+  "enable": "false",
+  "twoFactorCode": "!Qwerty12345",
+  "resetSharedKey": "false",
+  "resetRecoveryCodes": "false",
+  "forgetMachine": "false"
+}
+
+
+### Manage: Info
+GET {{host}}/manage/info
+Authorization: Bearer {{bearerToken}}
+
+
+### Manage: Info
+POST {{host}}/manage/info
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+{
+  "newEmail": "P@55w0rd",
+  "newPassword": "P@55w0rd",
+  "oldPassword": "P@55w0rd"
+}

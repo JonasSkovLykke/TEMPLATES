@@ -1,0 +1,27 @@
+services:
+  <name>:
+    image: <repository/<name>>:<version-tag>
+    container_name: <name>
+    restart: unless-stopped
+    hostname: <name>
+    networks:
+      - $DEFAULT_NETWORK
+    volumes:
+      - /opt/docker/<name>/logs:/logs
+  
+  <name>-seq:
+    image: datalust/seq:latest
+    container_name: <name>-Seq
+    restart: unless-stopped
+    environment:
+      - ACCEPT_EULA=Y
+    networks:
+      - $DEFAULT_NETWORK
+    ports:
+      - 8080:80
+    volumes:
+      - /opt/docker/<name>/<name>/seq:/data
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,14 @@
+services:
+  <name>:
+    image: <repository/<name>>:<version-tag>
+    container_name: <name>
+    restart: unless-stopped
+    hostname: <name>
+    networks:
+      - $DEFAULT_NETWORK
+    ports:
+      - 80:80
+
+networks:
+  proxy:
+    external: true

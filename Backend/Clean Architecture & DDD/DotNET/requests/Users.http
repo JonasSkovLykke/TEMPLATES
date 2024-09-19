@@ -1,0 +1,52 @@
+### Users
+
+
+@host=https://localhost:7001/v1/Users
+@bearerToken=CfDJ8BTq6jvqrpRJprfV0mbZa5OEis75F8-3m_qeS7KAcFqOijQAhvCBGS9gs_FAC09P7VCyvlN0Y9gyHf79t7b1m_T444ZvMBrtDklWnbyK6SCtn_bFsDyeLGEPAyD8v-tt50sk23aaLt_x2OstHyqiFXPQpS1qMUqgyGNpEpRgw8bqnafRcHDeogcbHCsnOPbO0Qn7jAbDnLw49yGebAUP8f0q3WJS5yU7CeaWj6b7DSWlWsxWTLYeTigu16esS5o1UGwjSLnMo4HEUtBoxbk8IVEi18N5nPL0oDXmUrlIACRk-dGJ3IzfWTwjqoeJNsgKcrdPQmaRdGMh3PKjLc-abKbUWihb54_AcHj9xsAJiKCPKiL3PifRyFBESSELJh6SAxgliRrR07Z2ipZm1JHr4ssl3A2zWgd6aO0GHrPw8t-33mT0aIVEaJR-OIP27GNPcyUAjWIP2zYADfNTSU-yqIfUnhnYhIHto0Y2Gg2UlNv_2I1BrXhVhGtL9IBipjCBdPXhcCLcFA-WcUZxJV8yO8SehqpBI6f7JInMQyLyxCWTI-z9bHEBVL_4xVmnc2YVW1PWpWc8RuvDE1uwVkPFwOcd2mv70A37cGqIJFivvo3oJbp9wL8ARUOQgLtkwn01_uYTdEhUCr1JpZcYkDy0cO4
+@userId=6bfc8cbb-0a50-403f-97ed-2716003413b3
+
+### Get Users
+GET {{host}}/
+Authorization: Bearer {{bearerToken}}
+
+
+### Create User
+POST {{host}}/
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+  "password": "P@55w0rd",
+  "phoneNumber": "12345678",
+  "firstName": "John",
+  "lastName": "Doe"
+}
+
+
+### Get User
+GET {{host}}/{{userId}}
+Authorization: Bearer {{bearerToken}}
+
+
+### Update User
+PUT {{host}}/{{userId}}
+Authorization: Bearer {{bearerToken}}
+Content-Type: application/json
+
+{
+  "email": "john@doe.com",
+  "phoneNumber": "12345678",
+  "firstName": "John",
+  "lastName": "Doe"
+  "roles": []
+}
+
+
+### Delete User
+DELETE {{host}}/{{userId}}
+Authorization: Bearer {{bearerToken}}
+
+
+### Users: Me
+GET {{host}}/me
+Authorization: Bearer {{bearerToken}}

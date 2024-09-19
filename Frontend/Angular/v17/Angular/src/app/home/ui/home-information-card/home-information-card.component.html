@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="card" style="--clr: #009688">
+        <div class="img-box">
+            <img src="https://iospect.dk/wp-content/uploads/2022/10/app-icon-orange.png">
+        </div>
+        <div class="content">
+            <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+            <br>
+            <p>Email: {{ user.email }}</p>
+            <br>
+            <p>Phone Number: {{ user.phoneNumber }}</p>
+            <br>
+            <p>ID: {{ user.id }}</p>
+            <br>
+            <p *ngIf="user.roles && user.roles.length">Roles:</p>
+            <ul *ngIf="user.roles && user.roles.length">
+                <li *ngFor="let role of user.roles">{{ role }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
